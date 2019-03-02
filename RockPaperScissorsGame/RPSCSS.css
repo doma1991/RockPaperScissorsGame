@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+body {
+    background-color: #F5EFED;
+    color: #7DBBC3;
+    font-family: 'Coiny', cursive;
+}
+
+#page {
+    margin-top: 5%;
+}
+
+h1 {
+    margin-bottom: 1%;
+    color: #273043;
+}
+
+.images {
+    border: solid #7DBBC3 2px;
+    border-radius: 50%;
+    margin: 10px;
+    width: 180px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.images:hover {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+#outcome {
+    color: #273043;
+    font-size: 50px;
+}
+
+#score-board {
+    border: solid #7DBBC3 1px;
+    color: #273043;
+    width: 250px;
+}
+
+#score-headings {
+    color: #7DBBC3;
+}
+
+.score-fields {
+    border: solid #7DBBC3 1px;
+    width: 250px;
+}
+
+#user-score {
+    color: #273043;
+}
+
+#computer-score {
+    color: #273043;
+}
+
+#scores-button {
+    margin-top: 3px;
+    color: #7DBBC3;
+}

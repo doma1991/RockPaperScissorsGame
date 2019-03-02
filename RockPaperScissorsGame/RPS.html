@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="RPSCSS.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <script>
+        var userScores = 0; // setting initial value for scores
+        var computerScores = 0; // setting initial value for scores
+
+        // function to use AJAX to make an asychronomous request to the PHP game functions 
+        function play(strChoice) {
+
+            var xmlhttp = new XMLHttpRequest(); // new HTTP request
+            xmlhttp.onreadystatechange = function() { // annonymous function for processing once the request is returned
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("outcome").innerHTML = this.responseText;
+
+                    var response = this.responseText;
+
+                    function scores(result) {
+                        if (result.includes("Computer") == true) {
+                            computerScores++;
+                        } else if (result.includes("You") == true) {
+                            userScores++;
+                        }
+                    }
+
+                    scores(response);
+
+                    document.getElementById("user-score").innerHTML = userScores;
+                    document.getElementById("computer-score").innerHTML = computerScores;
+
+                }
+
+            };
+            xmlhttp.open('GET', 'GameFunctions.php?choice=' + strChoice); // making the HTTP request - function is asigned a key value pair of choice - read by _REQUEST superglobal - and added the strChoice argument
+            xmlhttp.send(); // sending the HTTP request
+
+        };
+
+        // function to reset scores & last result
+        function resetScores() {
+            userScores = 0;
+            computerScores = 0;
+            document.getElementById("user-score").innerHTML = userScores;
+            document.getElementById("computer-score").innerHTML = computerScores;
+            document.getElementById("outcome").innerHTML = "";
+        }
+    </script>
+    <div class="container" id="page">
+        <div class="row justify-content-center align-items-center">
+            <h1>Rock Paper Scissors Game</h1>
+            <!--            <button type="button" onclick="play(r)">Submit</button>-->
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <h3>Please choose:</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-xs-3 text-center">
+                <figure><img class="images" id="Rock" src="images/Rock.jpg" alt="Rock" onclick="play('r')">
+                    <figcaption>Rock</figcaption>
+                </figure>
+            </div>
+            <div class="col-xs-3 text-center">
+                <figure><img class="images" id="Paper" src="images/Paper.jpg" alt="Paper" onclick="play('p')">
+                    <figcaption>Paper</figcaption>
+                </figure>
+            </div>
+            <div class="col-xs-3 text-center">
+                <figure><img class="images" id="Scissors" src="images/Scissors.jpg" alt="Scissors" onclick="play('s')">
+                    <figcaption>Scissors</figcaption>
+                </figure>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <h4>And the winner is... <span id="outcome"></span></h4>
+        </div>
+    </div>
+    <div class="container" id="score-board">
+        <div class="row justify-content-center align-items-center">
+            Score board
+        </div>
+        <div class="row justify-content-center align-items-center" id="score-headings">
+            <div class="col-md-6 text-center score-fields">User: <br><span id="user-score">0</span></div>
+            <div class="col-md-6 text-center score-fields">Computer: <br><span id="computer-score">0</span></div>
+        </div>
+    </div>
+    <div class="container" id="scores-button">
+        <div class="row justify-content-center align-items-center">
+            <button value="rest" onclick="resetScores()">Reset Scores</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+
+</html>
